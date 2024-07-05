@@ -1,7 +1,7 @@
 import feedparser
 
-def arxiv_research():
-    url = 'https://rss.arxiv.org/rss/cs'
+def arxiv_research(category='cs'):
+    url = f'https://rss.arxiv.org/rss/{category}'
 
     feed = feedparser.parse(url)
 
