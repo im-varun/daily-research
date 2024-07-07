@@ -2,9 +2,9 @@ import feedparser
 from category_mapping import arxiv_mapping
 
 def arxiv_research(category):
-    arxiv_category = arxiv_mapping.get(category)
+    category_abbreviation = arxiv_mapping.get(category)
 
-    url = f'https://rss.arxiv.org/rss/{arxiv_category}'
+    url = f'https://rss.arxiv.org/rss/{category_abbreviation}'
 
     feed = feedparser.parse(url)
 
