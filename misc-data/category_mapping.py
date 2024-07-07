@@ -1,0 +1,22 @@
+arxiv_mapping = {
+    'Computer Science': 'cs', 
+    'Economics': 'econ', 
+    'Electrical Engineering and System Science': 'eess', 
+    'Mathematics': 'math', 
+    'Physics': 'physics', 
+    'Astrophysics': 'astro-ph', 
+    'Quantum Physics': 'quant-ph', 
+    'Condensed Matter': 'cond-mat', 
+    'General Relativity and Quantum Cosmology': 'gr-qc', 
+    'High Energy Physics - Experiment': 'hep-ex', 
+    'High Energy Physics - Lattice': 'hep-lat', 
+    'High Energy Physics - Phenomenology': 'hep-ph', 
+    'High Energy Physics - Theory': 'hep-th', 
+    'Mathematical Physics': 'math-ph', 
+    'Nonlinear Sciences': 'nlin', 
+    'Nuclear Experiment': 'nucl-ex', 
+    'Nuclear Theory': 'nucl-th', 
+    'Quantitative Biology': 'q-bio', 
+    'Quantitative Finance': 'q-fin', 
+    'Statistics': 'stat'
+    }
