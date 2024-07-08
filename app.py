@@ -7,26 +7,28 @@ st.set_page_config('Daily Research', ':newspaper:')
 st.title('Daily Research :newspaper:')
 
 category = st.selectbox('Research Field', arxiv_mapping.keys(), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
-entries = arxiv_research(category)
 
-for entry in entries:
-    with st.expander(entry.get('title')):
-        st.write('Authors: ', entry.get('author'))
-        
-        arxiv_id = entry.get('id').split(':')[2]
-        st.write('arXiv ID: ', arxiv_id)
-        
-        st.write('Announce Type: ', entry.get('arxiv_announce_type'))
+with st.spinner(f'Loading {category} RSS Feeds ....'):
+    entries = arxiv_research(category)
 
-        summary = entry.get('summary')
+    for entry in entries:
+        with st.expander(entry.get('title')):
+            st.write('Authors: ', entry.get('author'))
+            
+            arxiv_id = entry.get('id').split(':')[2]
+            st.write('arXiv ID: ', arxiv_id)
+            
+            st.write('Announce Type: ', entry.get('arxiv_announce_type'))
 
-        abstract_index = summary.index('Abstract')
-        abstract = summary[abstract_index:]
+            summary = entry.get('summary')
 
-        st.write(abstract)
+            abstract_index = summary.index('Abstract')
+            abstract = summary[abstract_index:]
 
-        arxiv_link = entry.get('link')
-        pdf_link = arxiv_link.replace('abs', 'pdf')
+            st.write(abstract)
 
-        st.link_button('arXiv', arxiv_link)
-        st.link_button('PDF', pdf_link)
+            arxiv_link = entry.get('link')
+            pdf_link = arxiv_link.replace('abs', 'pdf')
+
+            st.link_button('arXiv', arxiv_link)
+            st.link_button('PDF', pdf_link)
