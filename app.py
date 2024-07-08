@@ -4,6 +4,8 @@ from research import arxiv_research
 
 st.set_page_config('Daily Research', ':newspaper:')
 
+st.title('Daily Research :newspaper:')
+
 category = st.selectbox('Research Field', arxiv_mapping.keys(), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
 entries = arxiv_research(category)
 
