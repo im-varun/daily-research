@@ -6,8 +6,6 @@ def arxiv_research(category):
     url = f'https://rss.arxiv.org/rss/{category_abbreviation}'
 
     feed = feedparser.parse(url)
+    entries = feed.get('entries')
 
-    return feed.get('entries')
-
-if __name__ == "__main__":
-    arxiv_research('Computer Science')
+    return entries
