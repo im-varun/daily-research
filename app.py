@@ -20,9 +20,9 @@ if category:
     if entries:
         paginator_location = st.empty()
 
-        num_pages = (len(entries) - 1) // (FEEDS_PER_PAGE + 1)
-        page_format = lambda i: f'Page {i}'
-        page_number = paginator_location.selectbox('Page Number', range(1, num_pages + 1), format_func=page_format, label_visibility='collapsed')
+        num_pages = ((len(entries) - 1) // FEEDS_PER_PAGE) + 1
+        page_format = lambda i: f'Page {i + 1}'
+        page_number = paginator_location.selectbox('Page Number', range(num_pages), format_func=page_format, label_visibility='collapsed')
 
         min_index = page_number * FEEDS_PER_PAGE
         max_index = min_index + FEEDS_PER_PAGE
