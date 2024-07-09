@@ -12,27 +12,26 @@ category = st.selectbox('Research Field', arxiv_mapping.keys(), index=None, plac
 def load_data(category):
     return arxiv_research(category)
 
-with st.spinner(f'Loading {category} RSS Feeds ....'):
-    entries = load_data(category)
+entries = load_data(category)
 
-    for entry in entries:
-        with st.expander(entry.get('title')):
-            st.write('Authors: ', entry.get('author'))
-            
-            arxiv_id = entry.get('id').split(':')[2]
-            st.write('arXiv ID: ', arxiv_id)
-            
-            st.write('Announce Type: ', entry.get('arxiv_announce_type'))
+for entry in entries:
+    with st.expander(entry.get('title')):
+        st.write('Authors: ', entry.get('author'))
+        
+        arxiv_id = entry.get('id').split(':')[2]
+        st.write('arXiv ID: ', arxiv_id)
+        
+        st.write('Announce Type: ', entry.get('arxiv_announce_type'))
 
-            summary = entry.get('summary')
+        summary = entry.get('summary')
 
-            abstract_index = summary.index('Abstract')
-            abstract = summary[abstract_index:]
+        abstract_index = summary.index('Abstract')
+        abstract = summary[abstract_index:]
 
-            st.write(abstract)
+        st.write(abstract)
 
-            arxiv_link = entry.get('link')
-            pdf_link = arxiv_link.replace('abs', 'pdf')
+        arxiv_link = entry.get('link')
+        pdf_link = arxiv_link.replace('abs', 'pdf')
 
-            st.link_button('arXiv', arxiv_link)
-            st.link_button('PDF', pdf_link)
+        st.link_button('arXiv', arxiv_link)
+        st.link_button('PDF', pdf_link)
