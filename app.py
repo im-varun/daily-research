@@ -8,8 +8,12 @@ st.title('Daily Research: A Reader for Latest Research Papers :book:')
 
 category = st.selectbox('Research Field', arxiv_mapping.keys(), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
 
+@st.cache_data(show_spinner=False)
+def load_data(category):
+    return arxiv_research(category)
+
 with st.spinner(f'Loading {category} RSS Feeds ....'):
-    entries = arxiv_research(category)
+    entries = load_data(category)
 
     for entry in entries:
         with st.expander(entry.get('title')):
