@@ -2,7 +2,7 @@ import streamlit as st
 from category_mapping import arxiv_mapping
 from research import arxiv_research
 
-st.set_page_config('Daily Research', ':newspaper:')
+st.set_page_config('Daily Research', ':newspaper:', layout='wide')
 
 st.title('Daily Research: A Research News Reader :newspaper:')
 
