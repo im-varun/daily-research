@@ -1,22 +1,33 @@
+import itertools
 import streamlit as st
 from category_mapping import arxiv_mapping
 from research import arxiv_research
-
-st.set_page_config('Daily Research', ':book:', layout='wide')
-
-st.title('Daily Research: A Reader for Latest Research Papers :book:')
-
-category = st.selectbox('Research Field', arxiv_mapping.keys(), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
 
 @st.cache_data(show_spinner=False)
 def load_data(category):
     return arxiv_research(category)
 
+st.set_page_config('Daily Research', ':book:', layout='wide')
+st.title('Daily Research: A Reader for Latest Research Papers :book:')
+
+category = st.selectbox('Research Field', arxiv_mapping.keys(), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
+
 if category:
     entries = load_data(category)
 
     if entries:
-        for entry in entries:
+        paginator_location = st.empty()
+
+        num_pages = (len(entries) - 1) // (10 + 1)
+        page_format = lambda i: f'Page {i}'
+        page_number = paginator_location.selectbox('Page Number', range(1, num_pages + 1), format_func=page_format, label_visibility='collapsed')
+
+        min_index = page_number * 10
+        max_index = min_index + 10
+
+        paginator = itertools.islice(enumerate(entries), min_index, max_index)
+
+        for i, entry in paginator:
             with st.expander(entry.get('title')):
                 st.write('Authors: ', entry.get('author'))
                 
