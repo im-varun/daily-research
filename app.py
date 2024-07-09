@@ -3,6 +3,8 @@ import streamlit as st
 from category_mapping import arxiv_mapping
 from research import arxiv_research
 
+FEEDS_PER_PAGE = 10
+
 @st.cache_data(show_spinner=False)
 def load_data(category):
     return arxiv_research(category)
@@ -18,12 +20,12 @@ if category:
     if entries:
         paginator_location = st.empty()
 
-        num_pages = (len(entries) - 1) // (10 + 1)
+        num_pages = (len(entries) - 1) // (FEEDS_PER_PAGE + 1)
         page_format = lambda i: f'Page {i}'
         page_number = paginator_location.selectbox('Page Number', range(1, num_pages + 1), format_func=page_format, label_visibility='collapsed')
 
-        min_index = page_number * 10
-        max_index = min_index + 10
+        min_index = page_number * FEEDS_PER_PAGE
+        max_index = min_index + FEEDS_PER_PAGE
 
         paginator = itertools.islice(enumerate(entries), min_index, max_index)
 
