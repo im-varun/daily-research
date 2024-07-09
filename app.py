@@ -2,9 +2,9 @@ import streamlit as st
 from category_mapping import arxiv_mapping
 from research import arxiv_research
 
-st.set_page_config('Daily Research', ':newspaper:', layout='wide')
+st.set_page_config('Daily Research', ':book:', layout='wide')
 
-st.title('Daily Research: A Research News Reader :newspaper:')
+st.title('Daily Research: A Reader for Latest Research Papers :book:')
 
 category = st.selectbox('Research Field', arxiv_mapping.keys(), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
 
