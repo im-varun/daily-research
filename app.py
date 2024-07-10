@@ -18,7 +18,8 @@ if category:
     entries = load_data(category)
 
     if entries:
-        paginator_location = st.empty()
+        top_menu = st.columns([4, 1, 1], vertical_alignment='center')
+        paginator_location = top_menu[2]
 
         num_pages = ((len(entries) - 1) // FEEDS_PER_PAGE) + 1
         page_format = lambda i: f'Page {i + 1}'
