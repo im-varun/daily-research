@@ -12,7 +12,8 @@ def load_data(category_abbreviation):
 st.set_page_config('Daily Research', ':book:', layout='wide')
 st.title('Daily Research: A Reader for Latest Research Papers :book:')
 
-category = st.selectbox('Research Field', arxiv_mapping.keys(), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
+with st.container(border=True):
+    category = st.selectbox('Research Field', arxiv_mapping.keys(), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
 
 if category:
     category_abbreviation = arxiv_mapping.get(category).get('category_abbreviation')
