@@ -47,6 +47,9 @@ if category:
 
                 st.write(abstract)
 
+                tags = [tag.get('term') for tag in entry.get('tags')]
+                st.write('Tags: ', ', '.join(tags))
+
                 arxiv_link = entry.get('link')
                 pdf_link = arxiv_link.replace('abs', 'pdf')
 
