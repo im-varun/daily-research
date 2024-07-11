@@ -81,5 +81,3 @@ if category:
 
                 st.link_button('arXiv', arxiv_link)
                 st.link_button('PDF', pdf_link)
-    else:
-        st.write('Announcements for latest research papers are unavailable today. Please check back tomorrow.')
