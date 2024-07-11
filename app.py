@@ -21,9 +21,12 @@ with st.container(border=True):
         if (len(subcategories) > 0):
             subcategory = st.selectbox('Research Field Subcategory', list(subcategories.keys()), index=None, placeholder='Select a Research Field Subcategory', label_visibility='collapsed')
         else:
-            subcategory = st.selectbox('Research Field Subcategory', [''], placeholder='No Subcategories Available', index=None, label_visibility='collapsed')
+            subcategory = st.selectbox('Research Field Subcategory', [''], index=None, placeholder='No Subcategories Available', label_visibility='collapsed')
+        
+        announce_type = st.selectbox('Announce Type: ', ['all', 'cross', 'new', 'replace', 'replace-cross'])
     else:
-        subcategory = st.selectbox('Research Field Subcategory', [''], placeholder='Select a Research Field Subcategory', index=None, disabled=True, label_visibility='collapsed')
+        subcategory = st.selectbox('Research Field Subcategory', [''], index=None, placeholder='Select a Research Field Subcategory', disabled=True, label_visibility='collapsed')
+        announce_type = st.selectbox('Announce Type: ', [''], disabled=True)
 
 if category:
     category_data = arxiv_mapping.get(category)
