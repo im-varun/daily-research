@@ -6,8 +6,8 @@ from research import arxiv_research
 FEEDS_PER_PAGE = 10
 
 @st.cache_data(show_spinner=False)
-def load_data(category_abbreviation):
-    return arxiv_research(category_abbreviation)
+def load_data(category_abbreviation, requested_announce_type):
+    return arxiv_research(category_abbreviation, requested_announce_type)
 
 st.set_page_config('Daily Research', ':book:', layout='wide')
 st.title('Daily Research: A Reader for Latest Research Papers :book:')
@@ -39,7 +39,7 @@ if category:
     else:
         data_endpoint = category_abbreviation
     
-    entries = load_data(data_endpoint)
+    entries = load_data(data_endpoint, announce_type)
 
     if entries:
         top_menu = st.columns([4, 1, 1], vertical_alignment='center')
