@@ -26,8 +26,17 @@ with st.container(border=True):
         subcategory = st.selectbox('Research Field Subcategory', [''], placeholder='Select a Research Field Subcategory', index=None, disabled=True, label_visibility='collapsed')
 
 if category:
-    category_abbreviation = arxiv_mapping.get(category).get('category_abbreviation')
-    entries = load_data(category_abbreviation)
+    category_data = arxiv_mapping.get(category)
+
+    category_abbreviation = category_data.get('category_abbreviation')
+    
+    if subcategory:
+        subcategory_abbreviation = category_data.get('sub_categories').get(subcategory)
+        data_endpoint = '.'.join([category_abbreviation, subcategory_abbreviation])
+    else:
+        data_endpoint = category_abbreviation
+    
+    entries = load_data(data_endpoint)
 
     if entries:
         top_menu = st.columns([4, 1, 1], vertical_alignment='center')
