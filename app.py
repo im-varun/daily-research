@@ -13,7 +13,17 @@ st.set_page_config('Daily Research', ':book:', layout='wide')
 st.title('Daily Research: A Reader for Latest Research Papers :book:')
 
 with st.container(border=True):
-    category = st.selectbox('Research Field', arxiv_mapping.keys(), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
+    category = st.selectbox('Research Field', list(arxiv_mapping.keys()), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
+
+    if category:
+        subcategories = arxiv_mapping.get(category).get('sub_categories')
+
+        if (len(subcategories) > 0):
+            subcategory = st.selectbox('Research Field Subcategory', list(subcategories.keys()), index=None, placeholder='Select a Research Field Subcategory', label_visibility='collapsed')
+        else:
+            subcategory = st.selectbox('Research Field Subcategory', [''], placeholder='No Subcategories Available', index=None, label_visibility='collapsed')
+    else:
+        subcategory = st.selectbox('Research Field Subcategory', [''], placeholder='Select a Research Field Subcategory', index=None, disabled=True, label_visibility='collapsed')
 
 if category:
     category_abbreviation = arxiv_mapping.get(category).get('category_abbreviation')
