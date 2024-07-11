@@ -15,7 +15,7 @@ st.title('Daily Research: A Reader for Latest Research Papers :book:')
 category = st.selectbox('Research Field', arxiv_mapping.keys(), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
 
 if category:
-    category_abbreviation = arxiv_mapping.get(category)
+    category_abbreviation = arxiv_mapping.get(category).get('category_abbreviation')
     entries = load_data(category_abbreviation)
 
     if entries:
