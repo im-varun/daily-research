@@ -21,13 +21,16 @@ if category:
 
     if entries:
         top_menu = st.columns([4, 1, 1], vertical_alignment='center')
-        paginator_location = top_menu[2]
+        
+        page_selector = top_menu[2]
 
         num_pages = ((len(entries) - 1) // FEEDS_PER_PAGE) + 1
         page_format = lambda i: f'Page {i + 1}'
-        page_number = paginator_location.selectbox('Page Number', range(num_pages), format_func=page_format, label_visibility='collapsed')
 
-        min_index = page_number * FEEDS_PER_PAGE
+        with page_selector:
+            page = st.selectbox('Page Number', range(num_pages), format_func=page_format, label_visibility='collapsed')
+
+        min_index = page * FEEDS_PER_PAGE
         max_index = min_index + FEEDS_PER_PAGE
 
         paginator = itertools.islice(enumerate(entries), min_index, max_index)
