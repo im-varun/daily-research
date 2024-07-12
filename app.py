@@ -13,20 +13,29 @@ st.set_page_config('Daily Research', ':book:', layout='wide')
 st.title('Daily Research: A Reader for Latest Research Papers :book:')
 
 with st.container(border=True):
-    category = st.selectbox('Research Field', list(arxiv_mapping.keys()), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
+    top_menu = st.columns([2, 2], vertical_alignment='center')
+    bottom_menu = st.columns([2, 2], vertical_alignment='center')
+
+    with top_menu[0]:
+        category = st.selectbox('Research Field', list(arxiv_mapping.keys()), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
 
     if category:
         subcategories = arxiv_mapping.get(category).get('sub_categories')
 
-        if (len(subcategories) > 0):
-            subcategory = st.selectbox('Research Field Subcategory', list(subcategories.keys()), index=None, placeholder='Select a Research Field Subcategory', label_visibility='collapsed')
-        else:
-            subcategory = st.selectbox('Research Field Subcategory', [''], index=None, placeholder='No Subcategories Available', label_visibility='collapsed')
+        with top_menu[1]:
+            if (len(subcategories) > 0):
+                subcategory = st.selectbox('Research Field Subcategory', list(subcategories.keys()), index=None, placeholder='Select a Research Field Subcategory', label_visibility='collapsed')
+            else:
+                subcategory = st.selectbox('Research Field Subcategory', [''], index=None, placeholder='No Subcategories Available', label_visibility='collapsed')
         
-        announce_type = st.selectbox('Announce Type: ', ['all', 'cross', 'new', 'replace', 'replace-cross'])
+        with bottom_menu[0]:
+            announce_type = st.selectbox('Announce Type: ', ['all', 'cross', 'new', 'replace', 'replace-cross'])
     else:
-        subcategory = st.selectbox('Research Field Subcategory', [''], index=None, placeholder='Select a Research Field Subcategory', disabled=True, label_visibility='collapsed')
-        announce_type = st.selectbox('Announce Type: ', [''], disabled=True)
+        with top_menu[1]:
+            subcategory = st.selectbox('Research Field Subcategory', [''], index=None, placeholder='Select a Research Field Subcategory', disabled=True, label_visibility='collapsed')
+        
+        with bottom_menu[0]:
+            announce_type = st.selectbox('Announce Type: ', [''], disabled=True)
 
 if category:
     category_data = arxiv_mapping.get(category)
