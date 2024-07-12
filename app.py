@@ -17,22 +17,22 @@ with st.container(border=True):
     bottom_menu = st.columns([2, 2], vertical_alignment='center')
 
     with top_menu[0]:
-        category = st.selectbox('Research Field', list(arxiv_mapping.keys()), index=None, placeholder='Select a Research Field', label_visibility='collapsed')
+        category = st.selectbox('Category:', list(arxiv_mapping.keys()), index=None, placeholder='Select a Research Field')
 
     if category:
         subcategories = arxiv_mapping.get(category).get('sub_categories')
 
         with top_menu[1]:
             if (len(subcategories) > 0):
-                subcategory = st.selectbox('Research Field Subcategory', list(subcategories.keys()), index=None, placeholder='Select a Research Field Subcategory', label_visibility='collapsed')
+                subcategory = st.selectbox('Subcategory: ', list(subcategories.keys()), index=None, placeholder='Select a Research Field Subcategory')
             else:
-                subcategory = st.selectbox('Research Field Subcategory', [''], index=None, placeholder='No Subcategories Available', label_visibility='collapsed')
+                subcategory = st.selectbox('Subcategory: ', [''], index=None, placeholder='No Subcategories Available')
         
         with bottom_menu[0]:
             announce_type = st.selectbox('Announce Type: ', ['all', 'cross', 'new', 'replace', 'replace-cross'])
     else:
         with top_menu[1]:
-            subcategory = st.selectbox('Research Field Subcategory', [''], index=None, placeholder='Select a Research Field Subcategory', disabled=True, label_visibility='collapsed')
+            subcategory = st.selectbox('Subcategory: ', [''], index=None, placeholder='Select a Research Field Subcategory', disabled=True)
         
         with bottom_menu[0]:
             announce_type = st.selectbox('Announce Type: ', [''], disabled=True)
@@ -59,7 +59,7 @@ if category:
         page_format = lambda i: f'Page {i + 1}'
 
         with page_selector:
-            page = st.selectbox('Page Number', range(num_pages), format_func=page_format, label_visibility='collapsed')
+            page = st.selectbox('Page Number: ', range(num_pages), format_func=page_format)
 
         min_index = page * FEEDS_PER_PAGE
         max_index = min_index + FEEDS_PER_PAGE
