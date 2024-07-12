@@ -42,9 +42,9 @@ if category:
     entries = load_data(data_endpoint, announce_type)
 
     if entries:
-        top_menu = st.columns([4, 1, 1], vertical_alignment='center')
+        col1, col2, col3 = st.columns([4, 1, 1], vertical_alignment='center')
         
-        page_selector = top_menu[2]
+        page_selector = col3
 
         num_pages = ((len(entries) - 1) // FEEDS_PER_PAGE) + 1
         page_format = lambda i: f'Page {i + 1}'
