@@ -56,7 +56,8 @@ if category:
         page_selector = col3
 
         num_pages = ((len(entries) - 1) // FEEDS_PER_PAGE) + 1
-        page_format = lambda i: f'Page {i + 1}'
+        
+        page_format = lambda i: f'{i + 1}'
 
         with page_selector:
             page = st.selectbox('Page Number: ', range(num_pages), format_func=page_format)
