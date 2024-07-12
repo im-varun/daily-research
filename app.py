@@ -14,7 +14,7 @@ st.title('Daily Research: A Reader for Latest Research Papers :book:')
 
 with st.container(border=True):
     top_menu = st.columns([2, 2], vertical_alignment='center')
-    bottom_menu = st.columns([2, 2], vertical_alignment='center')
+    bottom_menu = st.columns([1, 2, 1], vertical_alignment='center')
 
     with top_menu[0]:
         category = st.selectbox('Category:', list(arxiv_mapping.keys()), index=None, placeholder='Select a Research Field')
