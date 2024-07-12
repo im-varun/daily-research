@@ -53,11 +53,15 @@ if category:
     if entries:
         col1, col2, col3 = st.columns([4, 1, 1], vertical_alignment='center')
         
+        display_total = col1
         page_selector = col3
 
         num_pages = ((len(entries) - 1) // FEEDS_PER_PAGE) + 1
         
         page_format = lambda i: f'{i + 1}'
+
+        with display_total:
+            st.markdown(f'**Total Results:** {len(entries)}')
 
         with page_selector:
             page = st.selectbox('Page Number: ', range(num_pages), format_func=page_format)
