@@ -1,20 +1,27 @@
 import feedparser
 
-def arxiv_research(data_endpoint, requested_announce_type):
+def arxiv_research(data_endpoint, requested_announce_type, requested_keywords):
     url = f'https://rss.arxiv.org/rss/{data_endpoint}'
 
     feed = feedparser.parse(url)
     entries = feed.get('entries')
 
-    if requested_announce_type == 'all':
-        return entries
-    else:
-        processed_entries = []
+    filtered_entries = []
 
-        for entry in entries:
-            announce_type = entry.get('arxiv_announce_type')
+    for entry in entries:
+        announce_type = entry.get('arxiv_announce_type')
+        if (requested_announce_type == 'all') or (requested_announce_type == announce_type):
+            if (len(requested_keywords) != 0):
+                title = entry.get('title')
 
-            if (announce_type == requested_announce_type):
-                processed_entries.append(entry)
+                summary = entry.get('summary')
+                abstract_index = summary.index('Abstract')
+                abstract = summary[abstract_index:]
 
-        return processed_entries
+                if any((keyword in title) or (keyword in abstract) for keyword in requested_keywords):
+                    filtered_entries.append(entry)
+            else:
+                filtered_entries.append(entry)
+                
+
+    return filtered_entries
