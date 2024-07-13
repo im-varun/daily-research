@@ -6,15 +6,15 @@ from research import arxiv_research
 FEEDS_PER_PAGE = 10
 
 @st.cache_data(show_spinner=False)
-def load_data(category_abbreviation, requested_announce_type):
-    return arxiv_research(category_abbreviation, requested_announce_type)
+def load_data(category_abbreviation, requested_announce_type, requested_keywords):
+    return arxiv_research(category_abbreviation, requested_announce_type, requested_keywords)
 
 st.set_page_config('Daily Research', ':book:', layout='wide')
 st.title('Daily Research: A Reader for Latest Research Papers :book:')
 
 with st.container(border=True):
     top_menu = st.columns([2, 2], vertical_alignment='center')
-    bottom_menu = st.columns([1, 6, 1], vertical_alignment='center')
+    bottom_menu = st.columns([2, 6], vertical_alignment='center')
 
     with top_menu[0]:
         category = st.selectbox('Category:', list(arxiv_mapping.keys()), index=None, placeholder='Select a Research Field')
@@ -30,12 +30,18 @@ with st.container(border=True):
         
         with bottom_menu[0]:
             announce_type = st.selectbox('Announce Type: ', ['all', 'cross', 'new', 'replace', 'replace-cross'])
+
+        with bottom_menu[1]:
+            search_text = st.text_input('Keywords: ', placeholder='Search for Keywords')
     else:
         with top_menu[1]:
             subcategory = st.selectbox('Subcategory: ', [''], index=None, placeholder='Select a Research Field Subcategory', disabled=True)
         
         with bottom_menu[0]:
             announce_type = st.selectbox('Announce Type: ', [''], disabled=True)
+
+        with bottom_menu[1]:
+            search_text = st.text_input('Keywords: ', placeholder='Search for Keywords', disabled=True)
 
 if category:
     category_data = arxiv_mapping.get(category)
@@ -47,8 +53,13 @@ if category:
         data_endpoint = '.'.join([category_abbreviation, subcategory_abbreviation])
     else:
         data_endpoint = category_abbreviation
+
+    if search_text:
+        search_keywords = search_text.split()
+    else:
+        search_keywords = []
     
-    entries = load_data(data_endpoint, announce_type)
+    entries = load_data(data_endpoint, announce_type, search_keywords)
 
     if entries:
         col1, col2, col3 = st.columns([4, 1, 1], vertical_alignment='center')
