@@ -64,14 +64,14 @@ if category:
     if entries:
         results_menu = st.columns([6, 2], vertical_alignment='center')
         
-        display_total = results_menu[0]
+        results_information = results_menu[0]
         page_selector = results_menu[1]
 
         num_pages = ((len(entries) - 1) // FEEDS_PER_PAGE) + 1
         
         page_format = lambda i: f'{i + 1}'
 
-        with display_total:
+        with results_information:
             st.markdown(f'**Total Results:** {len(entries)}')
 
         with page_selector:
@@ -106,3 +106,6 @@ if category:
 
                 st.link_button('arXiv', arxiv_link)
                 st.link_button('PDF', pdf_link)
+    else:
+        st.markdown('**Latest Research Papers for selected parameters are unavailable today.**')
+        st.markdown('**Please check back tomorrow.**')
