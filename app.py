@@ -62,10 +62,10 @@ if category:
     entries = load_data(data_endpoint, announce_type, search_keywords)
 
     if entries:
-        col1, col2, col3 = st.columns([4, 1, 1], vertical_alignment='center')
+        results_menu = st.columns([6, 2], vertical_alignment='center')
         
-        display_total = col1
-        page_selector = col3
+        display_total = results_menu[0]
+        page_selector = results_menu[1]
 
         num_pages = ((len(entries) - 1) // FEEDS_PER_PAGE) + 1
         
