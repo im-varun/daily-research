@@ -41,7 +41,7 @@ with st.container(border=True):
             announce_type = st.selectbox('Announce Type: ', [''], disabled=True)
 
         with bottom_menu[1]:
-            search_text = st.text_input('Keywords: ', placeholder='Search for Keywords', disabled=True)
+            search_text = st.text_input('Keywords: ', value=' ', placeholder='Search for Keywords', disabled=True)
 
 if category:
     category_data = arxiv_mapping.get(category)
