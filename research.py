@@ -4,6 +4,12 @@ def arxiv_research(data_endpoint, requested_announce_type, requested_keywords):
     url = f'https://rss.arxiv.org/rss/{data_endpoint}'
 
     feed = feedparser.parse(url)
+
+    status = feed.get('status')
+
+    if (status != 200):
+        raise Exception(f'An error occured with status code={status}. Please report this to the application developer.')
+
     entries = feed.get('entries')
 
     filtered_entries = []
