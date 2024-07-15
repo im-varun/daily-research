@@ -109,3 +109,6 @@ if category:
     else:
         st.markdown('**Latest Research Papers for selected parameters are unavailable today.**')
         st.markdown('**Please check back tomorrow.**')
+
+st.markdown('----')
+st.markdown('**To report any problem or error, please reach out to the developer at @ [im-varun](https://github.com/im-varun)**')
