@@ -5,7 +5,7 @@ from research import arxiv_research
 
 FEEDS_PER_PAGE = 10
 
-@st.cache_data(show_spinner=False)
+@st.cache_data(ttl='1h', show_spinner=False)
 def load_data(category_abbreviation, requested_announce_type, requested_keywords):
     return arxiv_research(category_abbreviation, requested_announce_type, requested_keywords)
 
