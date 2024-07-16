@@ -22,26 +22,40 @@ with st.container(border=True):
     if category:
         subcategories = arxiv_mapping.get(category).get('sub_categories')
 
-        with top_menu[1]:
-            if (len(subcategories) > 0):
-                subcategory = st.selectbox('Subcategory: ', list(subcategories.keys()), index=None, placeholder='Select a Research Field Subcategory')
-            else:
-                subcategory = st.selectbox('Subcategory: ', [''], index=None, placeholder='No Subcategories Available')
+        if (len(subcategories) > 0):
+            subcategories_list = list(subcategories.keys())
+            subcategories_placeholder = 'Select a Research Field Subcategory'
+        else:
+            subcategories_list = ['']
+            subcategories_placeholder = 'No Subcategories Available'
         
-        with bottom_menu[0]:
-            announce_type = st.selectbox('Announce Type: ', ['all', 'cross', 'new', 'replace', 'replace-cross'])
+        announce_type_list = ['all', 'cross', 'new', 'replace', 'replace-cross']
 
-        with bottom_menu[1]:
-            search_text = st.text_input('Keywords: ', placeholder='Search for Keywords')
+        search_text_value = ''
+
+        subcategories_flag = False
+        announce_type_flag = False
+        search_text_flag = False
     else:
-        with top_menu[1]:
-            subcategory = st.selectbox('Subcategory: ', [''], index=None, placeholder='Select a Research Field Subcategory', disabled=True)
-        
-        with bottom_menu[0]:
-            announce_type = st.selectbox('Announce Type: ', [''], disabled=True)
+        subcategories_list = ['']
+        subcategories_placeholder = ''
 
-        with bottom_menu[1]:
-            search_text = st.text_input('Keywords: ', value=' ', placeholder='Search for Keywords', disabled=True)
+        announce_type_list = ['']
+
+        search_text_value = ' '
+
+        subcategories_flag = True
+        announce_type_flag = True
+        search_text_flag = True
+
+    with top_menu[1]:
+        subcategory = st.selectbox('Subcategory: ', subcategories_list, index=None, placeholder=subcategories_placeholder, disabled=subcategories_flag)
+
+    with bottom_menu[0]:
+        announce_type = st.selectbox('Announce Type: ', announce_type_list, disabled=announce_type_flag)
+
+    with bottom_menu[1]:
+        search_text = st.text_input('Keywords: ', value=search_text_value, placeholder='Search for Keywords', disabled=search_text_flag)
 
 if category:
     category_data = arxiv_mapping.get(category)
