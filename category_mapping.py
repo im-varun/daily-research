@@ -1,3 +1,7 @@
+'''
+This is used to store category mappings for various research fields.
+'''
+
 arxiv_mapping = {
     'Computer Science': {
         'category_abbreviation': 'cs', 
