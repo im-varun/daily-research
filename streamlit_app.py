@@ -1,3 +1,7 @@
+'''
+This script is used to build Daily Research web application.
+'''
+
 import itertools
 import streamlit as st
 from category_mapping import arxiv_mapping
@@ -6,8 +10,17 @@ from research import arxiv_research
 FEEDS_PER_PAGE = 10
 
 @st.cache_data(ttl='1h', show_spinner=False)
-def load_data(category_abbreviation, requested_announce_type, requested_keywords):
-    return arxiv_research(category_abbreviation, requested_announce_type, requested_keywords)
+def load_data(data_endpoint, requested_announce_type, requested_keywords):
+    '''
+    This function is used for loading and caching RSS feeds data.
+    The data is cached for 1 hour. After that, the application will discard any old, cached 
+    values, and the function will be rerun.
+    :param data_endpoint: The endpoint (category name with optional subcategory name) to 
+    pass to the RSS feeds link provided by arXiv.
+    :param requested_announce_type: Research paper announce type to use in filtering RSS feeds.
+    :param requested_keywords: Keywords (typed by user) to use in filtering RSS feeds.
+    '''
+    return arxiv_research(data_endpoint, requested_announce_type, requested_keywords)
 
 st.set_page_config(page_title='Daily Research', page_icon=':book:', layout='wide')
 st.title(body='Daily Research: A Reader for Latest Research Papers :book:')
