@@ -8,7 +8,7 @@ def arxiv_research(data_endpoint, requested_announce_type, requested_keywords):
     status = feed.get('status')
 
     if (status != 200):
-        raise Exception(f'An error occured with status code={status}. Please report this to the application developer.')
+        raise Exception(f'An error occured with status code={status}.')
 
     entries = feed.get('entries')
 
