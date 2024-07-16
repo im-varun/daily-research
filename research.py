@@ -21,8 +21,7 @@ def arxiv_research(data_endpoint, requested_announce_type, requested_keywords):
                 title = entry.get('title')
 
                 summary = entry.get('summary')
-                abstract_index = summary.index('Abstract')
-                abstract = summary[abstract_index:]
+                abstract = summary[summary.index('Abstract'):]
 
                 if any((keyword in title) or (keyword in abstract) for keyword in requested_keywords):
                     filtered_entries.append(entry)
