@@ -17,14 +17,14 @@ with st.container(border=True):
     bottom_menu = st.columns([2, 6], vertical_alignment='center')
 
     with top_menu[0]:
-        category = st.selectbox('Category:', list(arxiv_mapping.keys()), index=None, placeholder='Select a Research Field')
+        category = st.selectbox('Category:', list(arxiv_mapping.keys()), index=None, placeholder='Select a Category')
 
     if category:
         subcategories = arxiv_mapping.get(category).get('sub_categories')
 
         if (len(subcategories) > 0):
             subcategories_list = list(subcategories.keys())
-            subcategories_placeholder = 'Select a Research Field Subcategory'
+            subcategories_placeholder = 'Select a Subcategory'
         else:
             subcategories_list = ['']
             subcategories_placeholder = 'No Subcategories Available'
