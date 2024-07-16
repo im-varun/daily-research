@@ -20,7 +20,9 @@ with st.container(border=True):
         category = st.selectbox(label='Category:', options=list(arxiv_mapping.keys()), index=None, placeholder='Select a Category')
 
     if category:
-        subcategories = arxiv_mapping.get(category).get('sub_categories')
+        category_data = arxiv_mapping.get(category)
+
+        subcategories = category_data.get('sub_categories')
 
         if (len(subcategories) > 0):
             subcategories_list = list(subcategories.keys())
