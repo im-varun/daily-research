@@ -9,15 +9,15 @@ FEEDS_PER_PAGE = 10
 def load_data(category_abbreviation, requested_announce_type, requested_keywords):
     return arxiv_research(category_abbreviation, requested_announce_type, requested_keywords)
 
-st.set_page_config('Daily Research', ':book:', layout='wide')
-st.title('Daily Research: A Reader for Latest Research Papers :book:')
+st.set_page_config(page_title='Daily Research', page_icon=':book:', layout='wide')
+st.title(body='Daily Research: A Reader for Latest Research Papers :book:')
 
 with st.container(border=True):
-    top_menu = st.columns([2, 2], vertical_alignment='center')
-    bottom_menu = st.columns([2, 6], vertical_alignment='center')
+    top_menu = st.columns(spec=[2, 2], vertical_alignment='center')
+    bottom_menu = st.columns(spec=[2, 6], vertical_alignment='center')
 
     with top_menu[0]:
-        category = st.selectbox('Category:', list(arxiv_mapping.keys()), index=None, placeholder='Select a Category')
+        category = st.selectbox(label='Category:', options=list(arxiv_mapping.keys()), index=None, placeholder='Select a Category')
 
     if category:
         subcategories = arxiv_mapping.get(category).get('sub_categories')
@@ -49,13 +49,13 @@ with st.container(border=True):
         search_text_flag = True
 
     with top_menu[1]:
-        subcategory = st.selectbox('Subcategory: ', subcategories_list, index=None, placeholder=subcategories_placeholder, disabled=subcategories_flag)
+        subcategory = st.selectbox(label='Subcategory: ', options=subcategories_list, index=None, placeholder=subcategories_placeholder, disabled=subcategories_flag)
 
     with bottom_menu[0]:
-        announce_type = st.selectbox('Announce Type: ', announce_type_list, disabled=announce_type_flag)
+        announce_type = st.selectbox(label='Announce Type: ', options=announce_type_list, disabled=announce_type_flag)
 
     with bottom_menu[1]:
-        search_text = st.text_input('Keywords: ', value=search_text_value, placeholder='Search for Keywords', disabled=search_text_flag)
+        search_text = st.text_input(label='Keywords: ', value=search_text_value, placeholder='Search for Keywords', disabled=search_text_flag)
 
 if category:
     category_data = arxiv_mapping.get(category)
@@ -76,7 +76,7 @@ if category:
     entries = load_data(data_endpoint, announce_type, search_keywords)
 
     if entries:
-        results_menu = st.columns([6, 2], vertical_alignment='center')
+        results_menu = st.columns(spec=[6, 2], vertical_alignment='center')
         
         results_information = results_menu[0]
         page_selector = results_menu[1]
@@ -86,10 +86,10 @@ if category:
         page_format = lambda i: f'{i + 1}'
 
         with results_information:
-            st.markdown(f'**Total Results:** {len(entries)}')
+            st.markdown(body=f'**Total Results:** {len(entries)}')
 
         with page_selector:
-            page = st.selectbox('Page Number: ', range(num_pages), format_func=page_format)
+            page = st.selectbox(label='Page Number: ', options=range(num_pages), format_func=page_format)
 
         min_index = page * FEEDS_PER_PAGE
         max_index = min_index + FEEDS_PER_PAGE
@@ -97,7 +97,7 @@ if category:
         paginator = itertools.islice(enumerate(entries), min_index, max_index)
 
         for i, entry in paginator:
-            with st.expander(entry.get('title')):
+            with st.expander(label=entry.get('title')):
                 st.write('Authors: ', entry.get('author'))
                 
                 arxiv_id = entry.get('id').split(':')[2]
@@ -106,10 +106,7 @@ if category:
                 st.write('Announce Type: ', entry.get('arxiv_announce_type'))
 
                 summary = entry.get('summary')
-
-                abstract_index = summary.index('Abstract')
-                abstract = summary[abstract_index:]
-
+                abstract = summary[summary.index('Abstract'):]
                 st.write(abstract)
 
                 tags = [tag.get('term') for tag in entry.get('tags')]
@@ -118,8 +115,8 @@ if category:
                 arxiv_link = entry.get('link')
                 pdf_link = arxiv_link.replace('abs', 'pdf')
 
-                st.link_button('arXiv', arxiv_link)
-                st.link_button('PDF', pdf_link)
+                st.link_button(label='arXiv', url=arxiv_link)
+                st.link_button(label='PDF', url=pdf_link)
     else:
-        st.markdown('**Latest Research Papers for selected parameters are unavailable today.**')
-        st.markdown('**Please check back tomorrow.**')
+        st.markdown(body='**Latest Research Papers for selected parameters are unavailable today.**')
+        st.markdown(body='**Please check back tomorrow.**')
