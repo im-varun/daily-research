@@ -14,7 +14,8 @@ Daily Research displays only those research papers that are mentioned in arXiv's
 
 # Demo
 
-[Link to be added]
+Checkout the live version of Daily Research (hosted with Streamlit's Community Cloud):  
+https://dailyresearch.streamlit.app/
 
 # Usage Instructions
 
@@ -22,7 +23,7 @@ Daily Research displays only those research papers that are mentioned in arXiv's
 2. [Optional Step] Filter the search results by subject subcategory and announce type from the dropdown menu.
 3. [Optional Step] Filter the search results by keywords and press `ENTER`.
 
-# Installation Instruction
+# Installation Instructions
 
 Prerequisite: A latest version of [Python](https://www.python.org/)
 
