@@ -23,7 +23,7 @@ https://dailyresearch.streamlit.app/
 2. [Optional Step] Filter the search results by subject subcategory and announce type from the dropdown menu.
 3. [Optional Step] Filter the search results by keywords and press `ENTER`.
 
-# Installation Instructions
+# Build Application Locally Instructions
 
 Prerequisite: A latest version of [Python](https://www.python.org/)
 
