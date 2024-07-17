@@ -115,9 +115,6 @@ if category:
             with st.expander(label=entry.get('title')):
                 st.write('Authors: ', entry.get('author'))
                 
-                arxiv_id = entry.get('id').split(':')[2]
-                st.write('arXiv ID: ', arxiv_id)
-                
                 st.write('Announce Type: ', entry.get('arxiv_announce_type'))
 
                 summary = entry.get('summary')
