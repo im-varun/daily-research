@@ -15,7 +15,7 @@ Daily Research displays only those research papers that are mentioned in arXiv's
 # Demo
 
 Checkout the live version of Daily Research (hosted with Streamlit's Community Cloud):  
-https://dailyresearch.streamlit.app/
+https://dailyresearch.streamlit.app
 
 # Usage Instructions
 
