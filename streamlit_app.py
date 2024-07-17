@@ -1,5 +1,5 @@
 '''
-This script is used to build Daily Research web application.
+This script is used to build Daily Research web application using Streamlit.
 '''
 
 import itertools
