@@ -6,6 +6,10 @@ Daily Research is a real-time latest research papers reader, built in Python usi
 - Daily Research displays only those research papers that are mentioned in arXiv's present day RSS feeds. 
 - RSS feeds from arXiv are unavailable on Saturdays and Sundays, and on occasional holidays. Therefore, Daily Research will not display any search results on those days.
 - To understand the category taxonomy followed by arXiv, refer to this [link](https://arxiv.org/category_taxonomy).
+- Some keywords to understand announce types:
+    1. new - papers that are released for the first time on arXiv
+    2. replace - updated versions of papers that are released
+    3. cross - papers that are announced as new to categories that are not their primary category
 
 # Features
 
