@@ -1,6 +1,6 @@
 # Daily Research
 
-Daily Research is a real-time latest research papers reader, built in Python using [Streamlit](https://streamlit.io/). It uses present day RSS feeds from [arXiv](https://arxiv.org/) to fetch metadata about latest research paper published in various scientific fields (Computer Science, Mathematics, Statistics, etc.).
+Daily Research is a real-time latest research papers reader, built in Python using [Streamlit](https://streamlit.io/). It uses present day RSS feeds from [arXiv](https://arxiv.org/) to fetch metadata about latest research papers published in various scientific fields (Computer Science, Mathematics, Statistics, etc.).
 
 **Important Information**  
 - Daily Research displays only those research papers that are mentioned in arXiv's present day RSS feeds. 
