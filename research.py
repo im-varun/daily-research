@@ -21,7 +21,8 @@ def arxiv_research(data_endpoint, requested_announce_type, requested_keywords):
     # get the status of the feed
     status = feed.get('status')
 
-    # if status is not 200 ('OK'), raise an Exception with error status code message
+    # if status is not 200, raise an Exception
+    # 200 stands for 'OK'; other status codes indicate an error
     if (status != 200):
         raise Exception(f'An error occured with status code={status}.')
 
