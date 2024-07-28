@@ -7,10 +7,13 @@ import feedparser
 def arxiv_research(data_endpoint, requested_announce_type, requested_keywords):
     '''
     This function is used to fetch, parse and filter RSS feeds from arXiv.
+
     :param data_endpoint: The endpoint (category name with optional subcategory name) to 
     pass to the RSS feed link provided by arXiv.
     :param requested_announce_type: Research paper announce type to use in filtering RSS feeds.
     :param requested_keywords: Keywords (typed by user) to use in filtering RSS feeds.
+
+    Return: filtered entries of RSS feed.
     '''
     # url of the RSS feed
     url = f'https://rss.arxiv.org/rss/{data_endpoint}'
