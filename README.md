@@ -57,8 +57,6 @@ streamlit run streamlit_app.py
 
 # Disclaimer and License
 
-Any resemblance of the project name to real-world works is purely coincidental. The copyright of all research papers displayed in Daily Research belongs to their respective author(s) or publisher.  
-
-This project is for educational purposes only.
+Any resemblance of the project name to real-world works is purely coincidental. The copyright of all research papers displayed in Daily Research belongs to their respective author(s) or publisher. This project is for educational purposes only.
   
 Daily Research © 2024 by Varun Mulchandani is licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/).
