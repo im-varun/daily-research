@@ -21,9 +21,9 @@ def load_data(data_endpoint, requested_announce_type, requested_keywords):
     :param data_endpoint: The endpoint (category name with optional subcategory name) to 
     pass to the RSS feeds link provided by arXiv.
     :param requested_announce_type: Research paper announce type to use in filtering RSS feeds.
-    :param requested_keywords: Keywords (typed by user) to use in filtering RSS feeds.
+    :param requested_keywords: Keywords to use in filtering RSS feeds.
 
-    Return: filtered entries of RSS feed.
+    :return: Filtered entries of RSS feed.
     '''
     return arxiv_research(data_endpoint, requested_announce_type, requested_keywords)
 
